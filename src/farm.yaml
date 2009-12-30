@@ -1,0 +1,65 @@
+# For help modifying this file, go to
+#    http://wiki.github.com/slothbear/FarmerOtto
+
+# formatting guidelines for this file:
+# -- Lists of numbers are separated by comma + space.
+# -- Indentation is important.  Use spaces to indent, not tabs.
+
+premium-colors:
+  white: 0
+  brown: 0
+  black: 0
+  golden: 20
+remove-primer-chicken: white        # white, brown, black, golden, or false
+
+
+premium-pen: [356, 618, 4, 5]
+coop: [303, 597]
+remove-white-chicken-button: [408, 558]
+
+collect-eggs-after-load: true
+
+settings-customized: false # change to true after entering your stuff above
+
+
+
+## ----- the settings below are not more internal
+## ----- feel free to twiddle them as needed
+
+# sounds:
+# To turn off all sounds, set play-sounds to false
+# To turn off individual sounds, put a pound sign at the start of line.
+# say "some text" (Macintosh only) or the name of some mp3/aiff/wav file
+
+play-sounds: true
+
+startup-sound: falling_star.mp3   # played at startup
+shutdown-sound: suspense.mp3          # played at shutdown
+
+coop-loaded: short_beep.mp3     # just after loading coop. all chicks in?
+collect-eggs: electro_beep.mp3  # after "Collect Eggs".  Find an egg?
+
+check-unload-progress: say "all the chicks out? move those primers!"
+pause-extended: short_beep.mp3
+
+# Start with 'say' to use text-to-speech (Macintosh only).
+unknown-sound: say "gee, I wish I knew that sound."
+
+
+# delays:
+# 1000 milleseconds = 1 second
+
+secs-before-beginning: 10      # some time to swith to Farmville window (seconds)
+
+secs-after-coop-loaded: 5      # a chance to fix errors in coop loading
+
+secs-between-load-unload: 20   # pause for egg share/publish (seconds, extendable)
+secs-after-unload: 20          # pause between unload and load if looping
+                               # -- a chance to exchange primers
+
+ms-after-click: 750            # after every click (milliseconds)
+ms-after-look-inside: 500      # opening coop (milleseconds)
+
+# --- debug settings
+# prevent mouse clicking... just move mouse around
+#no-clicking: true
