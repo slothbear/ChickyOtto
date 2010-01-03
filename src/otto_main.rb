@@ -65,13 +65,20 @@ def sleep_for(secs, sound=false)
 end
 
 def make_noise(sound_key)
-  return unless Settings["play-sounds"]
-  sound = Settings[sound_key]
-  return if !sound
-  if sound =~ /^say /
-    system sound
+  return unless Settings["play-sounds"]  # don't bother alien purple chicken
+  
+  sound_spec = Settings[sound_key]
+  return if !sound_spec
+  
+  if sound_spec =~ /^say /     # Macintosh only.  TODO: enforce
+    system sound_spec
   else
-    system "afplay #{sound}"
+    sound_file = java.io.File.new("sounds/#{sound_spec}")
+    sound_url = sound_file.toURI().toURL()
+    
+    #TODO: check for existance: sound_url.openConnection.getInputStream.close
+    #      raises exception if file not found.  play() just ignores
+    java.applet.Applet.newAudioClip(sound_url).play
   end
 end
 
@@ -173,7 +180,7 @@ begin
     puts "then change 'settings-customized' to true (in farm.yaml)."
     exit 4
   end
-
+ 
   @coop = Settings["coop"]
 
   # delays used elsewhere
@@ -220,6 +227,7 @@ begin
   end
 
   make_noise("shutdown-sound")
+  sleep 3 # allow time for shutdown sound
 rescue SystemExit => e
   # exit via guard clauses at start of program -- ok
 end
