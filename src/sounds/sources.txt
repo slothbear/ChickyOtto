@@ -1,5 +1,8 @@
+The following sounds were created by me using Garage Band:
+  electro_beep.au
+  falling_star.au
+  suspense.au
 
-
+all other sounds are from
 http://www.codebrain.com/archive/au_sounds/
--------
-all other sounds
+
