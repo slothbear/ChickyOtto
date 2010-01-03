@@ -1,7 +1,7 @@
 require 'java'
 require 'yaml'
 
-OTTO_VERSION = "0.5.7"
+OTTO_VERSION = "0.5.8"
 
 # distance between fields at minimum zoom,
 # and between animals or trees at maximum zoom.
