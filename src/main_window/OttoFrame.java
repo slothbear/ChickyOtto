@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -39,7 +40,7 @@ public class OttoFrame extends JFrame {
 	
 	public OttoFrame() {
 		this.setTitle("Farmer Otto");
-		JPanel panel = new JPanel(new MigLayout("", "[right]"));
+		JPanel panel = new JPanel(new MigLayout("", "20[right][right][right][right][grow,fill]"));
 
 		addSeparator(panel, "capture farm");
 		panel.add(capture_farm);
@@ -74,6 +75,7 @@ public class OttoFrame extends JFrame {
 		panel.add(white_premiums);
 		panel.add(new JLabel("brown"), "split 2");
 		panel.add(brown_premiums, "wrap");
+		
 		panel.add(new JLabel("black"), "split 2");
 		panel.add(black_premiums);
 		panel.add(new JLabel("golden"), "split 2");
@@ -86,7 +88,13 @@ public class OttoFrame extends JFrame {
 		JButton stop = new JButton("stop");
 		stop.setEnabled(false);
 		panel.add(stop, "wrap para");
-		panel.add(new JLabel("turn on CAPS LOCK to pause, then click stop"), "span");
+		panel.add(new JLabel("turn on CAPS LOCK to pause, then click stop"), "span 2, wrap");
+		panel.add(new JLabel("or turn off CAPS LOCK to continue"), "span 2, wrap para");
+		
+		JPanel screen_capture = new JPanel() ;
+		screen_capture.setBackground(Color.gray);
+		screen_capture.setPreferredSize (new Dimension (800,600));
+		panel.add(screen_capture, "dock east");
 
 		getContentPane().add(panel);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
