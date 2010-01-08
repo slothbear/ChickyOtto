@@ -1,7 +1,7 @@
 configuration do |c|
-  c.project_name = 'otto'
+  c.project_name = 'FarmerOtto'
   c.output_dir = 'package'
-  c.main_ruby_file = 'otto_main'
+  c.main_ruby_file = 'main'
   c.main_java_file = 'org.rubyforge.rawr.Main'
 
   # Compile all Ruby and Java files recursively
@@ -25,4 +25,6 @@ configuration do |c|
 
   # Bundler options
   # c.do_not_generate_plist = false
+  c.mac_icon_path = File.expand_path('icons/monkeybars.icns')
+  c.windows_icon_path = File.expand_path('icons/monkeybars.ico')
 end
