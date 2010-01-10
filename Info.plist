@@ -3,7 +3,7 @@
 <plist version="0.9">
 <dict>
     <key>CFBundleName</key>
-    <string>otto</string>
+    <string>FarmerOtto</string>
     <key>CFBundleVersion</key>
     <string>100.0</string>
     <key>CFBundleAllowMixedLocalizations</key>
@@ -19,7 +19,7 @@
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleIconFile</key>
-    <string>GenericJavaApp.icns</string>
+    <string>monkeybars.icns</string>
     <key>Java</key>
     <dict>
         <key>MainClass</key>
@@ -28,7 +28,7 @@
         <string>1.5*</string>
         <key>ClassPath</key>
             <array>
-                <string>$JAVAROOT/otto.jar</string>
+                <string>$JAVAROOT/FarmerOtto.jar</string>
             </array>
         <key>Properties</key>
         <dict>

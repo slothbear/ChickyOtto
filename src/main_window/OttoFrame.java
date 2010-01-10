@@ -21,10 +21,10 @@ public class OttoFrame extends JFrame {
 	ImageArea ia = new ImageArea();
 
 	private JButton capture_farm = new JButton("capture");
-    private JLabel capture_progress = new JLabel("ready");
+    private JLabel capture_progress = new JLabel("please do");
     
 	private JButton locate_farm = new JButton("locate");
-	private JLabel farm_location = new JLabel("0,0") ;
+	private JLabel farm_location = new JLabel("0,0removethisdefault") ;
 	
 	private JButton locate_coop = new JButton("locate");
 	private JLabel coop_location = new JLabel("0,0") ;
