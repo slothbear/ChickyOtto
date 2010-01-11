@@ -1,6 +1,8 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
@@ -18,24 +20,27 @@ import net.miginfocom.swing.MigLayout;
 public class OttoFrame extends JFrame {
 	private static final long serialVersionUID = 911078009934658231L;
 	
-	ImageArea ia = new ImageArea();
+	ImageArea ia = new ImageArea(this);
 
 	private JButton capture_farm = new JButton("capture");
-    private JLabel capture_progress = new JLabel("please do");
     
 	private JButton locate_farm = new JButton("locate");
-	private JLabel farm_location = new JLabel("0,0removethisdefault") ;
+	// TODO: remove these defaults -- should come from model.
+	JLabel farm_location = new JLabel("0,0") ;
 	
 	private JButton locate_coop = new JButton("locate");
-	private JLabel coop_location = new JLabel("0,0") ;
+	JLabel coop_location = new JLabel("0,0") ;
 	
 	private JButton locate_primers = new JButton("locate");
-	private JLabel primers_location = new JLabel("0,0") ;
+	// TODO: *_location are now invisible data stores for the points.
+	// change to j.a.Point or ruby array or something non-ui.
+	// Something that doesn't require unparsing and reparsing ints, hm? 
+	JLabel primers_location = new JLabel("0,0") ;
 	private JTextField primers_x = new JTextField(3);
 	private JTextField primers_y = new JTextField(3);
 
 	private JButton locate_premiums = new JButton("locate");
-	private JLabel premiums_location = new JLabel("0,0") ;
+	JLabel premiums_location = new JLabel("0,0") ;
 	private JTextField premiums_x = new JTextField(3);
 	private JTextField premiums_y = new JTextField(3);
 	
@@ -50,35 +55,39 @@ public class OttoFrame extends JFrame {
 	
 	public OttoFrame() {
 		this.setTitle("Farmer Otto");
-		JPanel panel = new JPanel(new MigLayout("", "20[right][right][right][right][grow,fill]"));
+		String constraints = ""; // = "debug";
+		JPanel panel = 
+			new JPanel(
+				new MigLayout(
+						constraints, "20[right][right][right][right]10"));
 
 		addSeparator(panel, "capture farm");
-		panel.add(capture_farm);
-		panel.add(capture_progress, "wrap para");
+		panel.add(capture_farm, "wrap para");
 		
 		addSeparator(panel, "locate farm");
-		panel.add(locate_farm);
-		panel.add(farm_location, "wrap para");
+		panel.add(locate_farm);		
+		panel.add(new JLabel("top left of farm area"), "span 3, wrap para");
 	
 		addSeparator(panel, "coop");
 		panel.add(locate_coop);
-		panel.add(coop_location, "wrap para");
+		panel.add(new JLabel("middle bottom nest"), "span 3, wrap para");
 
 		addSeparator(panel, "primer pen");
 		panel.add(locate_primers);
-		panel.add(primers_location, "wrap");
+		panel.add(new JLabel("back left chicken eye"), "span 3, wrap");
 		panel.add(new JLabel("rows"), "split 2");
 		panel.add(primers_x);
 		panel.add(new JLabel("cols"), "split 2");
 		panel.add(primers_y, "wrap para");
+
 		
 		addSeparator(panel, "premium pen");
 		panel.add(locate_premiums);
-		panel.add(premiums_location, "wrap");
+		panel.add(new JLabel("back left chicken eye"), "span 2, wrap");
 		panel.add(new JLabel("rows"), "split 2");
 		panel.add(premiums_x);
-		panel.add(new JLabel("cols"), "split 2");
-		panel.add(premiums_y, "wrap para");
+		panel.add(new JLabel("cols"), "split 2");		
+		panel.add(premiums_y, "wrap para");		
 		
 		addSeparator(panel, "premium colors");
 		panel.add(new JLabel("white"), "split 2");
@@ -103,7 +112,7 @@ public class OttoFrame extends JFrame {
 		
 		JScrollPane scroller = new JScrollPane(ia) ;
 		scroller.setPreferredSize (new Dimension (880,660));
-		panel.add(scroller, "dock east, grow");
+		panel.add(scroller, "dock east");
 
 		getContentPane().add(panel);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -128,19 +137,58 @@ class ImageArea extends JPanel {
 	private static final long serialVersionUID = 2402431474843357440L;
 
 	private Image image;
+	private OttoFrame frame;
 	
-	public ImageArea() {
+	BasicStroke wideStroke = new BasicStroke(4.0f);
+	BasicStroke narrowStroke = new BasicStroke(2.0f);
+	
+	public ImageArea(OttoFrame frame) {
 		super();
+		this.frame = frame;
 	}
 	
-	public void paintComponent (Graphics g) {
+	public void paintComponent (Graphics g1) {
 		// Repaint the component's background.
-		super.paintComponent (g);
-
+		super.paintComponent (g1);
+		Graphics2D g = (Graphics2D) g1; 
+		
 		// If an image has been defined, draw that image using the Component
 		// layer of this ImageArea object as the ImageObserver.
 		if (image != null)
 			g.drawImage (image, 0, 0, this);
+		
+		drawSpot(g, "farm", frame.farm_location.getText());
+		drawSpot(g, "coop", frame.coop_location.getText());
+		drawSpot(g, "primers", frame.primers_location.getText());
+		drawSpot(g, "premiums", frame.premiums_location.getText());
+	}
+
+	private void drawSpot(Graphics2D g, String item, String xy) {
+		if (xy.length() < 3) return;
+		// TODO: check for parsing exceptions.
+		int x = Integer.parseInt(xy.split(",")[0]);
+		if (0 == x) return;
+		int y = Integer.parseInt(xy.split(",")[1]);
+		int radius = 16;
+		int half   = 8;
+		
+		g.setStroke(wideStroke);
+		g.setColor(Color.red) ;
+		g.drawOval(x-half, y-half, radius, radius);
+		
+		// draw an "X" through the circle to mark the center.
+		// Maybe just draw a big X instead of the circle?
+		g.setStroke(narrowStroke);
+		g.drawLine(x+3-half, y+3-half, x+radius-3-half, y+radius-3-half);
+		g.drawLine(x+radius-3-half, y+3-half, x+3-half, y+radius-3-half);
+		
+		// draw a label for the circle
+		
+		g.setColor(Color.white);
+		g.fillRect(x+radius-20, y+radius-6, 80, 16);
+		
+		g.setColor(Color.blue);
+		g.drawString(item, x, y+radius+7);
 	}
 
 	

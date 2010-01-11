@@ -12,14 +12,11 @@ class MainWindowController < ApplicationController
     robot = java.awt.Robot.new
     model.farm_image = robot.createScreenCapture(rectScreenSize)
     signal :show_window
-
-    model.capture_progress = "captured"
     update_view
   end
   
   def start_locating thing
     model.locating = thing
-    model.location[thing] = "locating"
     signal :locating
     update_view
   end
@@ -48,5 +45,6 @@ class MainWindowController < ApplicationController
     model.locating = false
     signal :idle
     update_view
+    signal :refresh   # repaint the ImageArea
   end
 end

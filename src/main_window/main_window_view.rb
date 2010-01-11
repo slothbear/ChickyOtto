@@ -2,8 +2,6 @@ class MainWindowView < ApplicationView
   set_java_class 'OttoFrame'
   # TODO: need a status line somewhere for errors, status, etc.  + a log.
   
-  map :model => :capture_progress, :view => "capture_progress.text"
-  
   map :model => "location[:farm]", :view => "farm_location.text"
   map :model => "location[:coop]", :view => "coop_location.text"
   map :model => "location[:primers]", :view => "primers_location.text"
@@ -14,9 +12,9 @@ class MainWindowView < ApplicationView
   
   define_signal :name => :locating, :handler => :crosshair_cursor
   define_signal :name => :idle, :handler => :normal_cursor
+  define_signal :name => :refresh, :handler => :refresh
   
   add_listener :type => :mouse, :components => [:ia]
-  
   
   def hide_window(model, transfer)
     hide
@@ -25,6 +23,10 @@ class MainWindowView < ApplicationView
   def show_window(model, transfer)
     show
     @main_view_component.setImage(model.farm_image)
+  end
+  
+  def refresh(model, transfer)
+    @main_view_component.repaint
   end
   
   def crosshair_cursor(model, transfer)
