@@ -4,10 +4,10 @@ class MainWindowView < ApplicationView
   
   map :model => :capture_progress, :view => "capture_progress.text"
   
-  map :model => :farm_location, :view => "farm_location.text"
-  map :model => :coop_location, :view => "coop_location.text"
-  map :model => :primers_location, :view => "primers_location.text"
-  map :model => :premiums_location, :view => "premiums_location.text"
+  map :model => "location[:farm]", :view => "farm_location.text"
+  map :model => "location[:coop]", :view => "coop_location.text"
+  map :model => "location[:primers]", :view => "primers_location.text"
+  map :model => "location[:premiums]", :view => "premiums_location.text"
   
   define_signal :name => :hide_window, :handler => :hide_window
   define_signal :name => :show_window, :handler => :show_window

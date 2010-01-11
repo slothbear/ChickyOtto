@@ -17,53 +17,34 @@ class MainWindowController < ApplicationController
     update_view
   end
   
-  def locate_farm_action_performed event
-    # puts event
-    model.locating = :farm
-    model.farm_location = "locating"
+  def start_locating thing
+    model.locating = thing
+    model.location[thing] = "locating"
     signal :locating
     update_view
+  end
+  
+  def locate_farm_action_performed
+    start_locating(:farm)
   end
   
   def locate_coop_action_performed event
-    # puts event
-    model.locating = :coop
-    model.coop_location = "locating"
-    signal :locating
-    update_view
+    start_locating(:coop)
   end
   
   def locate_primers_action_performed event
-    # puts event
-    model.locating = :primers
-    model.primers_location = "locating"
-    signal :locating
-    update_view
+    start_locating(:primers)
   end
   
   def locate_premiums_action_performed event
-    # puts event
-    model.locating = :premiums
-    model.premiums_location = "locating"
-    signal :locating
-    update_view
+    start_locating(:premiums)
   end
   
   def ia_mouse_clicked event
     return unless model.locating
 
-    xy = event.get_x.to_s + "," + event.get_y.to_s
-    case model.locating
-    when :farm
-      model.farm_location = xy
-    when :coop
-      model.coop_location = xy
-    when :primers
-      model.primers_location = xy
-    when :premiums
-      model.premiums_location = xy
-    end
-    
+    model.location[model.locating] =
+      event.get_x.to_s + "," + event.get_y.to_s
     model.locating = false
     signal :idle
     update_view
