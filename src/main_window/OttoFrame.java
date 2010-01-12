@@ -21,7 +21,7 @@ import net.miginfocom.swing.MigLayout;
 public class OttoFrame extends JFrame {
 	private static final long serialVersionUID = 911078009934658231L;
 	
-	ImageArea ia = new ImageArea(this);
+	ImageArea image_area = new ImageArea(this);
 
 	private JButton capture_farm = new JButton("capture");
     
@@ -54,7 +54,7 @@ public class OttoFrame extends JFrame {
 	private JButton tend_button = new JButton("tend coop");
 	
 	public void setImage(BufferedImage img) {
-		ia.setImage(img);
+		image_area.setImage(img);
 	}
 	
 	public OttoFrame() {
@@ -123,7 +123,7 @@ public class OttoFrame extends JFrame {
 			);
 		panel.add(stopHelp, "left, span, wrap");
 		
-		JScrollPane scroller = new JScrollPane(ia) ;
+		JScrollPane scroller = new JScrollPane(image_area) ;
 		scroller.setPreferredSize (new Dimension (880,660));
 		panel.add(scroller, "dock east");
 

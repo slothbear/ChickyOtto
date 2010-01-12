@@ -37,7 +37,7 @@ class MainWindowController < ApplicationController
     start_locating(:premiums)
   end
   
-  def ia_mouse_clicked event
+  def image_area_mouse_clicked event
     return unless model.locating
 
     model.location[model.locating] = [event.get_x, event.get_y]
