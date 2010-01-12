@@ -47,4 +47,16 @@ class MainWindowController < ApplicationController
     update_view
     signal :refresh   # repaint the ImageArea
   end
+
+  def tend_button_action_performed
+    update_model view_state.model,
+      :primers_rows, :primers_cols,
+      :premiums_rows, :premiums_cols
+
+    [:white, :brown, :black, :golden]. each do |color|
+      model.premium_colors[color] = view_state.model.premium_colors[color]
+    end
+
+  end
+
 end

@@ -7,23 +7,23 @@ class MainWindowView < ApplicationView
   map :model => "location[:primers]", :view => "primers_location.text"
   map :model => "location[:premiums]", :view => "premiums_location.text"
     
-  # map :model => "primers_rows", :view => "primers_rows.text",
-  #   :using => [:to_s, :to_i]
-  # map :model => "primers_cols", :view => "primers_cols.text",
-  #     :using => [:to_s, :to_i]
-  # map :model => "premiums_rows", :view => "premiums_rows.text",
-  #     :using => [:to_s, :to_i]
-  # map :model => "premiums_cols", :view => "premiums_cols.text",
-  #     :using => [:to_s, :to_i]
-  # 
-  # map :model => "premium_colors[:white]", :view => "white_premiums.text",
-  #     :using => [:to_s, :to_i]
-  # map :model => "premium_colors[:brown]", :view => "brown_premiums.text",
-  #     :using => [:to_s, :to_i]
-  # map :model => "premium_colors[:black]", :view => "black_premiums.text",
-  #     :using => [:to_s, :to_i]
-  # map :model => "premium_colors[:golden]", :view => "golden_premiums.text",
-  #     :using => [:to_s, :to_i]
+  map :model => "primers_rows", :view => "primers_rows.text",
+      :using => [nil, :to_i]
+  map :model => "primers_cols", :view => "primers_cols.text",
+      :using => [nil, :to_i]
+  map :model => "premiums_rows", :view => "premiums_rows.text",
+      :using => [nil, :to_i]
+  map :model => "premiums_cols", :view => "premiums_cols.text",
+      :using => [nil, :to_i]
+
+  map :model => "premium_colors[:white]", :view => "white_premiums.text",
+      :using => [nil, :to_i]
+  map :model => "premium_colors[:brown]", :view => "brown_premiums.text",
+      :using => [nil, :to_i]
+  map :model => "premium_colors[:black]", :view => "black_premiums.text",
+      :using => [nil, :to_i]
+  map :model => "premium_colors[:golden]", :view => "golden_premiums.text",
+      :using => [nil, :to_i]
         
   define_signal :name => :hide_window, :handler => :hide_window
   define_signal :name => :show_window, :handler => :show_window
@@ -34,10 +34,6 @@ class MainWindowView < ApplicationView
   
   add_listener :type => :mouse, :components => [:ia]
 
-  def to_s(fixnum)
-    fixnum.to_s
-  end
-  
   def to_i(string)
     string.to_i
   end

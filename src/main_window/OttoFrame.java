@@ -49,7 +49,10 @@ public class OttoFrame extends JFrame {
 	private JTextField black_premiums = new JTextField(3);
 	private JTextField golden_premiums = new JTextField(3);
 	
-	JLabel statusMsg = new JLabel("<html><font color=green>idle</font></html>");
+	private JLabel statusMsg = new JLabel(
+	  "<html><font color=green>idle</font></html>");
+
+	private JButton tend_button = new JButton("tend coop");
 	
 	public void setImage(BufferedImage img) {
 		ia.setImage(img);
@@ -102,8 +105,7 @@ public class OttoFrame extends JFrame {
 		panel.add(golden_premiums, "wrap");
 		
 		addSeparator(panel, "fill in stuff above first");
-		JButton tend = new JButton("tend coop");
-		panel.add(tend);
+		panel.add(tend_button);
 		JButton stop = new JButton("stop");
 		panel.add(stop, "wrap");
 		
