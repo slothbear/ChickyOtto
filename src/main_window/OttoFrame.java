@@ -49,6 +49,8 @@ public class OttoFrame extends JFrame {
 	private JTextField black_premiums = new JTextField(3);
 	private JTextField golden_premiums = new JTextField(3);
 	
+	JLabel statusMsg = new JLabel("<html><font color=green>idle</font></html>");
+	
 	public void setImage(BufferedImage img) {
 		ia.setImage(img);
 	}
@@ -62,15 +64,15 @@ public class OttoFrame extends JFrame {
 						constraints, "20[right][right][right][right]10"));
 
 		addSeparator(panel, "capture farm");
-		panel.add(capture_farm, "wrap para");
+		panel.add(capture_farm, "wrap");
 		
 		addSeparator(panel, "locate farm");
 		panel.add(locate_farm);		
-		panel.add(new JLabel("top left of farm area"), "span 3, wrap para");
+		panel.add(new JLabel("top left of farm area"), "span 3, wrap");
 	
 		addSeparator(panel, "coop");
 		panel.add(locate_coop);
-		panel.add(new JLabel("middle bottom nest"), "span 3, wrap para");
+		panel.add(new JLabel("middle bottom nest"), "span 3, wrap");
 
 		addSeparator(panel, "primer pen");
 		panel.add(locate_primers);
@@ -82,11 +84,11 @@ public class OttoFrame extends JFrame {
 		
 		addSeparator(panel, "premium pen");
 		panel.add(locate_premiums);
-		panel.add(new JLabel("back left chicken eye"), "span 2, wrap");
+		panel.add(new JLabel("back left chicken eye"), "span 3, wrap");
 		panel.add(new JLabel("rows"), "split 2");
 		panel.add(premiums_rows);
 		panel.add(new JLabel("cols"), "split 2");		
-		panel.add(premiums_cols, "wrap para");		
+		panel.add(premiums_cols, "wrap");		
 		
 		addSeparator(panel, "premium colors");
 		panel.add(new JLabel("white"), "split 2");
@@ -97,17 +99,28 @@ public class OttoFrame extends JFrame {
 		panel.add(new JLabel("black"), "split 2");
 		panel.add(black_premiums);
 		panel.add(new JLabel("golden"), "split 2");
-		panel.add(golden_premiums, "wrap para");
+		panel.add(golden_premiums, "wrap");
 		
 		addSeparator(panel, "fill in stuff above first");
 		JButton tend = new JButton("tend coop");
-		tend.setEnabled(false);
 		panel.add(tend);
 		JButton stop = new JButton("stop");
-		stop.setEnabled(false);
-		panel.add(stop, "wrap para");
-		panel.add(new JLabel("turn on CAPS LOCK to pause, then click stop"), "span 2, wrap");
-		panel.add(new JLabel("or turn off CAPS LOCK to continue"), "span 2, wrap para");
+		panel.add(stop, "wrap");
+		
+		panel.add(new JLabel(
+			"<html><font color=blue>" + 
+			"<b>STATUS:  </b>" + 
+			"</font></html>  "
+			), "left, split 2");
+		panel.add(statusMsg, "left, wrap para");
+		
+		JLabel stopHelp = new JLabel(
+			"<html><font size=-1>" +
+			"turn on CAPS LOCK to pause, then click<br />" +
+			"<i><b>stop</b></i> or turn off CAPS LOCK to continue" +
+			"</font></html>"
+			);
+		panel.add(stopHelp, "left, span, wrap");
 		
 		JScrollPane scroller = new JScrollPane(ia) ;
 		scroller.setPreferredSize (new Dimension (880,660));
