@@ -25,10 +25,10 @@ class MainWindowModel
   def locate_remove_buttons
     rw = [@location[:farm][0]+163, @location[:farm][1]+305]
     @remove_button = {
-      "white", rw,
-      "brown", [rw[0]+292, rw[1]],
-      "black", [rw[0], rw[1]+190],
-      "golden", [rw[0]+292, rw[1]+190]
+      :white,  rw,
+      :brown,  [rw[0]+292, rw[1]],
+      :black,  [rw[0], rw[1]+190],
+      :golden, [rw[0]+292, rw[1]+190]
     }
   end
 
