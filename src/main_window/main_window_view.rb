@@ -1,11 +1,15 @@
 class MainWindowView < ApplicationView
   set_java_class 'OttoFrame'
-  # TODO: need a status line somewhere for errors, status, etc.  + a log.
-  
-  map :model => "location[:farm]", :view => "farm_location.text"
-  map :model => "location[:coop]", :view => "coop_location.text"
-  map :model => "location[:primers]", :view => "primers_location.text"
-  map :model => "location[:premiums]", :view => "premiums_location.text"
+
+  # TODO: is there a more natural object that could do point/array w/o convert?  
+  map :model => "location[:farm]", :view => "farm_location",
+    :using => [:to_point, :to_a]
+  map :model => "location[:coop]", :view => "coop_location",
+      :using => [:to_point, :to_a]
+  map :model => "location[:primers]", :view => "primers_location",
+      :using => [:to_point, :to_a]
+  map :model => "location[:premiums]", :view => "premiums_location",
+      :using => [:to_point, :to_a]
     
   map :model => "primers_rows", :view => "primers_rows.text",
       :using => [nil, :to_i]
@@ -38,6 +42,14 @@ class MainWindowView < ApplicationView
     string.to_i
   end
   
+  def to_point(array)
+    java.awt.Point.new(array[0], array[1])
+  end
+
+  def to_a(point)
+    [point.x, point.y]
+  end
+
   def hide_window(model, transfer)
     hide
   end

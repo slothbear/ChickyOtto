@@ -40,8 +40,7 @@ class MainWindowController < ApplicationController
   def ia_mouse_clicked event
     return unless model.locating
 
-    model.location[model.locating] =
-      event.get_x.to_s + "," + event.get_y.to_s
+    model.location[model.locating] = [event.get_x, event.get_y]
     model.locating = false
     signal :idle
     update_view
@@ -57,6 +56,7 @@ class MainWindowController < ApplicationController
       model.premium_colors[color] = view_state.model.premium_colors[color]
     end
 
-  end
+    model.tend_coop
+  end  # tend
 
 end

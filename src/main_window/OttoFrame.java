@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JButton;
@@ -26,21 +27,19 @@ public class OttoFrame extends JFrame {
     
 	private JButton locate_farm = new JButton("locate");
 	// TODO: remove these defaults -- should come from model.
-	JLabel farm_location = new JLabel("0,0") ;
+	//JLabel farm_location = new JLabel("0,0") ;
+	Point farm_location = new Point(0,0);
 	
 	private JButton locate_coop = new JButton("locate");
-	JLabel coop_location = new JLabel("0,0") ;
+	Point coop_location = new Point(0,0);
 	
 	private JButton locate_primers = new JButton("locate");
-	// TODO: *_location are now invisible data stores for the points.
-	// change to j.a.Point or ruby array or something non-ui.
-	// Something that doesn't require unparsing and reparsing ints, hm? 
-	JLabel primers_location = new JLabel("0,0") ;
+	Point primers_location = new Point(0,0);
 	private JTextField primers_rows = new JTextField(3);
 	private JTextField primers_cols = new JTextField(3);
 
 	private JButton locate_premiums = new JButton("locate");
-	JLabel premiums_location = new JLabel("0,0") ;
+	Point premiums_location = new Point(0,0);
 	private JTextField premiums_rows = new JTextField(3);
 	private JTextField premiums_cols = new JTextField(3);
 	
@@ -171,18 +170,16 @@ class ImageArea extends JPanel {
 		if (image != null)
 			g.drawImage (image, 0, 0, this);
 		
-		drawSpot(g, "farm", frame.farm_location.getText());
-		drawSpot(g, "coop", frame.coop_location.getText());
-		drawSpot(g, "primers", frame.primers_location.getText());
-		drawSpot(g, "premiums", frame.premiums_location.getText());
+		drawSpot(g, "farm", frame.farm_location);
+		drawSpot(g, "coop", frame.coop_location);
+		drawSpot(g, "primers", frame.primers_location);
+		drawSpot(g, "premiums", frame.premiums_location);
 	}
 
-	private void drawSpot(Graphics2D g, String item, String xy) {
-		if (xy.length() < 3) return;
-		// TODO: check for parsing exceptions.
-		int x = Integer.parseInt(xy.split(",")[0]);
+	private void drawSpot(Graphics2D g, String item, Point point) {
+		int x = point.x;
 		if (0 == x) return;
-		int y = Integer.parseInt(xy.split(",")[1]);
+		int y = point.y;
 		int radius = 16;
 		int half   = 8;
 		

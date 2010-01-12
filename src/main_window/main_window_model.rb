@@ -12,13 +12,29 @@ class MainWindowModel
   def initialize
     @farm_image = nil
     @locating = false    
-    @location = Hash.new('0,0')
+    @location = Hash.new([0,0])
     @premium_colors = Hash.new(7)
     
     @primers_rows = 0
     @primers_cols = 0
     @premiums_rows = 0
     @premiums_cols = 0
+
+  end
+
+  def locate_remove_buttons
+    rw = [@location[:farm][0]+163, @location[:farm][1]+305]
+    @remove_button = {
+      "white", rw,
+      "brown", [rw[0]+292, rw[1]],
+      "black", [rw[0], rw[1]+190],
+      "golden", [rw[0]+292, rw[1]+190]
+    }
+  end
+
+  # main call from the controller
+  def tend_coop
+    locate_remove_buttons
   end
 
 end
