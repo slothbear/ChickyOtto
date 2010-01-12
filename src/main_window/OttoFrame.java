@@ -36,13 +36,13 @@ public class OttoFrame extends JFrame {
 	// change to j.a.Point or ruby array or something non-ui.
 	// Something that doesn't require unparsing and reparsing ints, hm? 
 	JLabel primers_location = new JLabel("0,0") ;
-	private JTextField primers_x = new JTextField(3);
-	private JTextField primers_y = new JTextField(3);
+	private JTextField primers_rows = new JTextField(3);
+	private JTextField primers_cols = new JTextField(3);
 
 	private JButton locate_premiums = new JButton("locate");
 	JLabel premiums_location = new JLabel("0,0") ;
-	private JTextField premiums_x = new JTextField(3);
-	private JTextField premiums_y = new JTextField(3);
+	private JTextField premiums_rows = new JTextField(3);
+	private JTextField premiums_cols = new JTextField(3);
 	
 	private JTextField white_premiums = new JTextField(3);
 	private JTextField brown_premiums = new JTextField(3);
@@ -55,7 +55,7 @@ public class OttoFrame extends JFrame {
 	
 	public OttoFrame() {
 		this.setTitle("Farmer Otto");
-		String constraints = ""; // = "debug";
+		String constraints = ""; //"debug";
 		JPanel panel = 
 			new JPanel(
 				new MigLayout(
@@ -76,18 +76,17 @@ public class OttoFrame extends JFrame {
 		panel.add(locate_primers);
 		panel.add(new JLabel("back left chicken eye"), "span 3, wrap");
 		panel.add(new JLabel("rows"), "split 2");
-		panel.add(primers_x);
+		panel.add(primers_rows);
 		panel.add(new JLabel("cols"), "split 2");
-		panel.add(primers_y, "wrap para");
-
+		panel.add(primers_cols, "wrap");
 		
 		addSeparator(panel, "premium pen");
 		panel.add(locate_premiums);
 		panel.add(new JLabel("back left chicken eye"), "span 2, wrap");
 		panel.add(new JLabel("rows"), "split 2");
-		panel.add(premiums_x);
+		panel.add(premiums_rows);
 		panel.add(new JLabel("cols"), "split 2");		
-		panel.add(premiums_y, "wrap para");		
+		panel.add(premiums_cols, "wrap para");		
 		
 		addSeparator(panel, "premium colors");
 		panel.add(new JLabel("white"), "split 2");
