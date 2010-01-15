@@ -15,18 +15,18 @@ class MainWindowView < ApplicationView
     :using => [:to_point, :to_a]
   map :model => "location[:coop]", :view => "coop_location",
       :using => [:to_point, :to_a]
-  map :model => "location[:primers]", :view => "primers_location",
+  map :model => "location[:primers]", :view => "primer_location",
       :using => [:to_point, :to_a]
-  map :model => "location[:premiums]", :view => "premiums_location",
+  map :model => "location[:premiums]", :view => "premium_location",
       :using => [:to_point, :to_a]
     
-  map :model => "primers_rows", :view => "primers_rows.text",
+  map :model => "primer_rows", :view => "primer_rows.text",
       :using => [nil, :to_i]
-  map :model => "primers_cols", :view => "primers_cols.text",
+  map :model => "primer_columns", :view => "primer_columns.text",
       :using => [nil, :to_i]
-  map :model => "premiums_rows", :view => "premiums_rows.text",
+  map :model => "premium_rows", :view => "premium_rows.text",
       :using => [nil, :to_i]
-  map :model => "premiums_cols", :view => "premiums_cols.text",
+  map :model => "premium_columns", :view => "premium_columns.text",
       :using => [nil, :to_i]
 
   map :model => "premium_colors[:white]", :view => "white_premiums.text",

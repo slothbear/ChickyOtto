@@ -47,10 +47,30 @@ class MainWindowController < ApplicationController
     signal :refresh   # repaint the ImageArea
   end
 
+  def remove_primer_item_state_changed event
+    model.remove_primer = event.item.is_selected?
+  end
+
+  def white_primers_action_performed
+    model.primer_color = :white
+  end
+
+  def brown_primers_action_performed
+    model.primer_color = :brown
+  end
+
+  def black_primers_action_performed
+    model.primer_color = :black
+  end
+
+  def golden_primers_action_performed
+    model.primer_color = :golden
+  end
+
   def tend_button_action_performed
     update_model view_state.model,
-      :primers_rows, :primers_cols,
-      :premiums_rows, :premiums_cols
+      :primer_rows, :primer_columns,
+      :premium_rows, :premium_columns
 
     [:white, :brown, :black, :golden]. each do |color|
       model.premium_colors[color] = view_state.model.premium_colors[color]

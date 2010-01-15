@@ -7,10 +7,13 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -22,6 +25,7 @@ public class OttoFrame extends JFrame {
 	private static final long serialVersionUID = 911078009934658231L;
 	
 	ImageArea image_area = new ImageArea(this);
+	private static final Color accentColor = new Color(0, 70, 213);
 
 	private JButton capture_farm = new JButton("capture");
     
@@ -34,21 +38,26 @@ public class OttoFrame extends JFrame {
 	Point coop_location = new Point(0,0);
 	
 	private JButton locate_primers = new JButton("locate");
-	Point primers_location = new Point(0,0);
-	private JTextField primers_rows = new JTextField(3);
-	private JTextField primers_cols = new JTextField(3);
+	Point primer_location = new Point(0,0);
+	private JTextField primer_rows = new JTextField(3);
+	private JTextField primer_columns = new JTextField(3);
+	private JRadioButton white_primers = new JRadioButton("white", true);
+	private JRadioButton brown_primers = new JRadioButton("brown");
+	private JRadioButton black_primers = new JRadioButton("black");
+	private JRadioButton golden_primers = new JRadioButton("golden");
+	private JCheckBox remove_primer = new JCheckBox("remove primer before collecting?", true);
 
 	private JButton locate_premiums = new JButton("locate");
-	Point premiums_location = new Point(0,0);
-	private JTextField premiums_rows = new JTextField(3);
-	private JTextField premiums_cols = new JTextField(3);
+	Point premium_location = new Point(0,0);
+	private JTextField premium_rows = new JTextField(3);
+	private JTextField premium_columns = new JTextField(3);
 	
 	private JTextField white_premiums = new JTextField(3);
 	private JTextField brown_premiums = new JTextField(3);
 	private JTextField black_premiums = new JTextField(3);
 	private JTextField golden_premiums = new JTextField(3);
 	
-	private JLabel statusMsg = new JLabel(
+	private JLabel status_message = new JLabel(
 	  "<html><font color=green>idle</font></html>");
 
 	private JButton tend_button = new JButton("tend coop");
@@ -80,18 +89,30 @@ public class OttoFrame extends JFrame {
 		panel.add(locate_primers);
 		panel.add(new JLabel("back left chicken eye"), "span 3, wrap");
 		panel.add(new JLabel("rows"), "split 2");
-		panel.add(primers_rows);
-		panel.add(new JLabel("cols"), "split 2");
-		panel.add(primers_cols, "wrap");
+		panel.add(primer_rows);
+		panel.add(new JLabel("columns"), "split 2");
+		panel.add(primer_columns, "wrap");
 		
+		ButtonGroup group = new ButtonGroup();
+		group.add(white_primers);
+		group.add(brown_primers);
+		group.add(black_primers);
+		group.add(golden_primers);
+		panel.add(white_primers, "split 2");
+		panel.add(brown_primers);
+		panel.add(black_primers, "split 2");
+		panel.add(golden_primers, "wrap");
+
+		panel.add(remove_primer, "left, span, wrap");
+
 		addSeparator(panel, "premium pen");
 		panel.add(locate_premiums);
 		panel.add(new JLabel("back left chicken eye"), "span 3, wrap");
 		panel.add(new JLabel("rows"), "split 2");
-		panel.add(premiums_rows);
-		panel.add(new JLabel("cols"), "split 2");		
-		panel.add(premiums_cols, "wrap");		
-		
+		panel.add(premium_rows);
+		panel.add(new JLabel("columns"), "split 2");
+		panel.add(premium_columns, "wrap");
+
 		addSeparator(panel, "premium colors");
 		panel.add(new JLabel("white"), "split 2");
 		panel.add(white_premiums);
@@ -109,11 +130,11 @@ public class OttoFrame extends JFrame {
 		panel.add(stop, "wrap");
 		
 		panel.add(new JLabel(
-			"<html><font color=blue>" + 
+			"<html><font color=#0046D5>" +
 			"<b>STATUS:  </b>" + 
 			"</font></html>  "
 			), "left, split 2");
-		panel.add(statusMsg, "left, wrap para");
+		panel.add(status_message, "left, wrap para");
 		
 		JLabel stopHelp = new JLabel(
 			"<html><font size=-1>" +
@@ -134,7 +155,7 @@ public class OttoFrame extends JFrame {
 	
 	private static void addSeparator(JPanel panel, String text) {
 		JLabel l = new JLabel(text);
-		l.setForeground(new Color(0, 70, 213));
+		l.setForeground(accentColor);
 		panel.add(l, "gapbottom 1, span, split 2, aligny center, gaptop 10");
 		panel.add(new JSeparator(), "gapleft rel, growx, gaptop 10");
 	}
@@ -172,8 +193,8 @@ class ImageArea extends JPanel {
 		
 		drawSpot(g, "farm", frame.farm_location);
 		drawSpot(g, "coop", frame.coop_location);
-		drawSpot(g, "primers", frame.primers_location);
-		drawSpot(g, "premiums", frame.premiums_location);
+		drawSpot(g, "primers", frame.primer_location);
+		drawSpot(g, "premiums", frame.premium_location);
 	}
 
 	private void drawSpot(Graphics2D g, String item, Point point) {
