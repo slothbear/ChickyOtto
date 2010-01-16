@@ -2,37 +2,20 @@
 #    http://wiki.github.com/slothbear/FarmerOtto
 
 # formatting guidelines for this file:
-# -- Lists of numbers are separated by comma + space.
 # -- Indentation is important.  Use spaces to indent, not tabs.
-
-settings-customized: false      # change to true after entering your stuff below
-
-premium-pen: [454, 529, 4, 5]       # x, y, rows, columns
-coop: [448, 423]
-remove-white-chicken-button: [408, 463]
-
-premium-colors:
-  white: 0
-  brown: 0
-  black: 0
-  golden: 20
-remove-primer-chicken: white        # white, brown, black, golden, or false
-
-collect-eggs-after-load: true
-
-
-## ----- the settings below are not more internal
-## ----- feel free to twiddle them as needed
+# -- Anything after a pound sign (#) on a line is ignored
 
 # sounds:
 # To turn off all sounds, set play-sounds to false
 # To turn off individual sounds, put a pound sign at the start of line.
-# say "some text" (Macintosh only) or the name of some au/aiff/wav file
+# Each sound can be one of the following:
+# -- the name of a wav/aiff/au file in the /sounds directory
+# -- say "some text" (Macintosh only)
 
 play-sounds: true
 
-startup-sound: falling_star.au   # played at startup
-shutdown-sound: suspense.au          # played at shutdown
+startup-sound: falling_star.au
+shutdown-sound: suspense.au
 
 coop-loaded: short_beep.au     # just after loading coop. all chicks in?
 collect-eggs: electro_beep.au  # after "Collect Eggs".  Find an egg?
@@ -45,19 +28,17 @@ unknown-sound: say "gee, I wish I knew that sound."
 
 
 # delays:
-# 1000 milleseconds = 1 second
 
 secs-before-beginning: 10      # some time to swith to Farmville window (seconds)
-
 secs-after-coop-loaded: 5      # a chance to fix errors in coop loading
+secs-after-collect: 20         # pause for egg share/publish (seconds, extendable)
 
-secs-between-load-unload: 20   # pause for egg share/publish (seconds, extendable)
-secs-after-unload: 20          # pause between unload and load if looping
-                               # -- a chance to exchange primers
-
+# 1000 milleseconds = 1 second
 ms-after-click: 650            # after every click (milliseconds)
 ms-after-look-inside: 500      # opening coop (milleseconds)
 
 # --- debug settings
+# --- remove the pound sign (#) on a line to activate a setting
+
 # prevent mouse clicking... just move mouse around
 # no-clicking: true
