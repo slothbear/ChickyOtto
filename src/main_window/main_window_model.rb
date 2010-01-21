@@ -1,3 +1,7 @@
+require 'yaml'
+require 'field'
+require 'chicken_ranch'
+
 class MainWindowModel
   attr_accessor :farm_image
   
@@ -26,10 +30,19 @@ class MainWindowModel
     @remove_primer = true
   end
 
-  def locate_remove_buttons
+  def load_settings
+    if !File.exists?("farm.yaml")
+      msg = "The farm definition file 'farm.yaml' cannot be found."
+      javax.swing.JOptionPane.showMessageDialog(nil, msg)
+      exit 8
+    end
+    @settings = YAML::load_file("farm.yaml")
+  end
+
+  def remove_buttons
+    # locate "remove white" button via farm location.  then the others.
     rw = [@location[:farm][0]+163, @location[:farm][1]+305]
-    @remove_button = {
-      :white,  rw,
+    { :white,  rw,
       :brown,  [rw[0]+292, rw[1]],
       :black,  [rw[0], rw[1]+190],
       :golden, [rw[0]+292, rw[1]+190]
@@ -38,7 +51,16 @@ class MainWindowModel
 
   # main call from the controller
   def tend_coop
-    locate_remove_buttons
+    load_settings
+    @settings['remove-primer'] = @remove_primer
+    @settings['remove-button'] = remove_buttons
+    primer_pen = @location[:primers] << @primer_rows << @primer_columns
+    premium_pen = @location[:premiums] << @premium_rows << @premium_columns
+
+    ranch = ChickenRanch.new(primer_pen, @primer_color,
+      premium_pen, @premium_colors,
+      @location[:coop], @settings)
+    ranch.tend
   end
 
 end

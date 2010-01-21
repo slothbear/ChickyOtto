@@ -30,8 +30,9 @@ unknown-sound: say "gee, I wish I knew that sound."
 # delays:
 
 secs-before-beginning: 10      # some time to swith to Farmville window (seconds)
-secs-after-coop-loaded: 5      # a chance to fix errors in coop loading
-secs-after-collect: 20         # pause for egg share/publish (seconds, extendable)
+secs-after-coop-loaded: 3      # a chance to fix errors in coop loading
+secs-after-collect: 12        # pause for egg share/publish (seconds, extendable)
+secs-after-unload: 3           # everything out of coop??
 
 # 1000 milleseconds = 1 second
 ms-after-click: 650            # after every click (milliseconds)
