@@ -47,10 +47,6 @@ class MainWindowController < ApplicationController
     signal :refresh   # repaint the ImageArea
   end
 
-  def remove_primer_item_state_changed event
-    model.remove_primer = event.item.is_selected?
-  end
-
   def white_primers_action_performed
     model.primer_color = :white
   end

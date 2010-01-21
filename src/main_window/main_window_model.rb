@@ -13,7 +13,6 @@ class MainWindowModel
   
   attr_accessor :premium_colors
   attr_accessor :primer_color
-  attr_accessor :remove_primer
   
   def initialize
     @farm_image = nil
@@ -27,7 +26,6 @@ class MainWindowModel
     @premium_columns = 0
 
     @primer_color = :white
-    @remove_primer = true
   end
 
   def load_settings
@@ -52,7 +50,6 @@ class MainWindowModel
   # main call from the controller
   def tend_coop
     load_settings
-    @settings['remove-primer'] = @remove_primer
     @settings['remove-button'] = remove_buttons
     primer_pen = @location[:primers] << @primer_rows << @primer_columns
     premium_pen = @location[:premiums] << @premium_rows << @premium_columns

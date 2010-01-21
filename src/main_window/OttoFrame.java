@@ -45,7 +45,6 @@ public class OttoFrame extends JFrame {
 	private JRadioButton brown_primers = new JRadioButton("brown");
 	private JRadioButton black_primers = new JRadioButton("black");
 	private JRadioButton golden_primers = new JRadioButton("golden");
-	private JCheckBox remove_primer = new JCheckBox("remove primer before collecting?", true);
 
 	private JButton locate_premiums = new JButton("locate");
 	Point premium_location = new Point(0,0);
@@ -102,8 +101,6 @@ public class OttoFrame extends JFrame {
 		panel.add(brown_primers);
 		panel.add(black_primers, "split 2");
 		panel.add(golden_primers, "wrap");
-
-		panel.add(remove_primer, "left, span, wrap");
 
 		addSeparator(panel, "premium pen");
 		panel.add(locate_premiums);
