@@ -20,7 +20,7 @@ shutdown-sound: suspense.au
 coop-loaded: short_beep.au     # just after loading coop. all chicks in?
 collect-eggs: electro_beep.au  # after "Collect Eggs".  Find an egg?
 
-check-unload-progress: say "all the chicks out? move those primers!"
+check-unload-progress: short_beep.au  # all the chicks unloaded?
 pause-extended: short_beep.au
 
 # Start with 'say' to use text-to-speech (Macintosh only).
