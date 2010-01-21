@@ -70,7 +70,6 @@ class ChickenRanch
   def add_chicken(chicken)
     click_at chicken
     click_at [chicken[0]+16, chicken[1]+10]  # chicken/move
-    ROBOT.mouseMove(@coop[0],@coop[1])
     click_at @coop
   end
 
