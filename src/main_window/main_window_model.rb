@@ -47,8 +47,37 @@ class MainWindowModel
     }
   end
 
+  def valid_farm?
+    premium_count = @premium_rows * @premium_columns
+    color_count = @premium_colors.values.inject{|sum,x| sum + x}
+
+    valid =
+      @farm_image &&
+      @location.size == 4 &&
+      @primer_rows * @primer_columns > 0 &&
+      @primer_color &&
+      premium_count > 0 &&
+      premium_count <= 20 &&
+      premium_count == color_count
+
+    if !valid
+      javax.swing.JOptionPane.showMessageDialog(nil, <<EOS)
+Yikes!  Something is missing or your numbers are mushy.
+      Did you capture the farm image?
+      Is the location set for farm, coop, primers, and premiums?
+      Is primer rows * primer columns > 0?
+      Is premium rows * primer columns > 0 and <= 20?
+      Does premium rows * premium columns == the total of premium colors?
+      Check the documentation if you need more help.
+EOS
+    end
+
+    valid
+  end
+
   # main call from the controller
   def tend_coop
+    valid_farm? or return
     load_settings
     @settings['remove-button'] = remove_buttons
     primer_pen = @location[:primers] << @primer_rows << @primer_columns
