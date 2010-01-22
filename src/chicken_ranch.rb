@@ -86,14 +86,14 @@ class ChickenRanch
     ROBOT.delay(100 + rand(25))   # a little extra for the remove
     click_at [landing[0]-11, landing[1]+27]   # deposit the chick
     click_at landing # click on chick
-    click_at [landing[0]+16, landing[1]+52]  # STAY!
+    click_at [landing[0]+16, landing[1]+52]  # menu/Stay
   end
 
   def load_coop primer
     add_chicken primer
     premiums = @premium_pen.plots.dup  # TODO: this seems unkind.  weird.
     add_chicken premiums.shift
-    remove_chicken(@settings["remove-button"][@primer_color], primer, :primer) if @settings["remove-primer"]
+    remove_chicken(@settings["remove-button"][@primer_color], primer, :primer)
 
     premiums.each do |premium|
       add_chicken premium
