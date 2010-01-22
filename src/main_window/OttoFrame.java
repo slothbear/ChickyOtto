@@ -127,12 +127,12 @@ public class OttoFrame extends JFrame {
 
 		panel.add(stop_button, "wrap");
 		
-		panel.add(new JLabel(
-			"<html><font color=#0046D5>" +
-			"<b>STATUS:  </b>" + 
-			"</font></html>  "
-			), "left, split 2");
-		panel.add(status_message, "left, wrap para");
+		// panel.add(new JLabel(
+		// 	"<html><font color=#0046D5>" +
+		// 	"<b>STATUS:  </b>" +
+		// 	"</font></html>  "
+		// 	), "left, split 2");
+		// panel.add(status_message, "left, wrap para");
 		
 		JLabel stopHelp = new JLabel(
 			"<html><font size=-1>" +
@@ -140,7 +140,13 @@ public class OttoFrame extends JFrame {
 			"<i><b>stop</b></i> or turn off CAPS LOCK to continue" +
 			"</font></html>"
 			);
-		panel.add(stopHelp, "left, span, wrap");
+		panel.add(stopHelp, "left, span, wrap para");
+
+		panel.add(new JLabel(
+		"<html><font color=#0046D5>" +
+		"<b>version 0.6.0</b>  Ottocus Coopicus" +
+		"</font></html>  "
+		), "left, span");
 		
 		JScrollPane scroller = new JScrollPane(image_area) ;
 		scroller.setPreferredSize (new Dimension (880,660));
