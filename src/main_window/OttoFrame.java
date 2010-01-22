@@ -60,6 +60,7 @@ public class OttoFrame extends JFrame {
 	  "<html><font color=green>idle</font></html>");
 
 	private JButton tend_button = new JButton("tend coop");
+	private JButton stop_button = new JButton("stop");
 	
 	public void setImage(BufferedImage img) {
 		image_area.setImage(img);
@@ -123,8 +124,8 @@ public class OttoFrame extends JFrame {
 		
 		addSeparator(panel, "fill in stuff above first");
 		panel.add(tend_button);
-		JButton stop = new JButton("stop");
-		panel.add(stop, "wrap");
+
+		panel.add(stop_button, "wrap");
 		
 		panel.add(new JLabel(
 			"<html><font color=#0046D5>" +

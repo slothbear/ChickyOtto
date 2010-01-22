@@ -7,7 +7,7 @@ configuration do |c|
   # Compile all Ruby and Java files recursively
   # Copy all other files taking into account exclusion filter
   c.source_dirs = ['src', 'lib/ruby']
-  c.source_exclude_filter = [/.au/,/yaml/]
+  c.source_exclude_filter = []
 
   # Location of the jruby-complete.jar. Override this if your jar lives elsewhere.
   # This allows Rawr to make sure it uses a compatible jrubyc when compiling,
