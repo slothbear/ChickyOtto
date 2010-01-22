@@ -72,7 +72,14 @@ class MainWindowController < ApplicationController
       model.premium_colors[color] = view_state.model.premium_colors[color]
     end
 
-    model.tend_coop
+    # Tend the coop on separate thread so UI (stop button) stays enabled.
+    @tender = Thread.new do
+      model.tend_coop
+    end
   end  # tend
+
+  def stop_button_action_performed
+    Thread.kill(@tender) if @tender
+  end
 
 end
