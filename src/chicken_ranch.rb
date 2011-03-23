@@ -22,7 +22,7 @@ class ChickenRanch
   def pause?
     while caps_lock?
       make_noise("pause-extended")
-      sleep 15
+      sleep 30
     end
   end
 
@@ -120,6 +120,7 @@ class ChickenRanch
 
   def tend
     sleep_for @settings["secs-before-beginning"], "startup-sound"
+    #   empty_coop premium_pen if do_empty
     @primer_pen.plots.each do |primer|
       load_coop primer
       collect_eggs
