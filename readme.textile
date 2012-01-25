@@ -1,7 +1,7 @@
 Is your mouse finger tired?
 Hire Farmer Otto and relax.
 
-Check the wiki on GitHub for full instructions, including a video of ChickyOtto in operation.
+Check the wiki on GitHub for full instructions including screenshots.
 
 ChickyOtto is a single-purpose version of Farmer Otto. Its sole goal
 is to stuff chicken coops to harvest premium eggs. Farmville has closed
