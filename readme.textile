@@ -1,3 +1,10 @@
 Is your mouse finger tired?
 Hire Farmer Otto and relax.
 
+ChickyOtto is a single-purpose version of Farmer Otto. Its sole goal
+is to stuff chicken coops to harvest premium eggs. Farmville has closed
+this loophole. Coops no longer go to 100% via this method.
+
+A friend mentioned that you can keep the coop full-1 and feed one ready
+chicken into the coop, wait 5 minutes, then harvest. ChickyOtto could be
+modified to follow that method. I welcome your pull requests.
