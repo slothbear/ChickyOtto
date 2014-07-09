@@ -1,3 +1,7 @@
+_Note: This application is probably no longer useful, since Farmville
+has changed the way that coops work. Some of the techniques are probably
+still useful though._
+
 Is your mouse finger tired?
 Hire Farmer Otto and relax.
 
